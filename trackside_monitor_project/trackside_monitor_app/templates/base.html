@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    {% load static %}
+    <head>
+        <title>Trackside Monitor</title>
+        <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
+    </head>
+    <body>
+        <script src="{% static 'bootstrap/bootstrap.bundle.js' %}"></script>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>
