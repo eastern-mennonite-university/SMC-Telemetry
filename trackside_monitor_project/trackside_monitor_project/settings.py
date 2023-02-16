@@ -33,6 +33,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
+    'django_eventstream',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +45,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django_grip.GripMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -71,6 +74,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'trackside_monitor_project.wsgi.application'
+ASGI_APPLICATION = 'trackside_monitor_project.asgi.application'
 
 
 # Database
