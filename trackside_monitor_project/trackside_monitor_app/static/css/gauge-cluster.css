@@ -1,0 +1,45 @@
+img {
+    width: 100%;
+    position: absolute;
+}
+
+.gauge-wrapper {
+    width: 400px;
+    height: 300px;
+    position: relative;
+}
+
+.gauge-needle-container {
+    width: 200px;
+    height: 150px;
+    position: absolute;
+    top: 75px;
+    left: 100px;
+}
+
+.gauge-needle-wrapper {
+    width: 200px;
+    height: 150px;
+    position: relative;
+    transition: all 0.8s;
+}
+
+.gauge-needle {
+    width: 135px;
+    height: 3px;
+    position: absolute;
+    top: 73px;
+    left: -35px;
+    background-color: red;
+}
+
+#rpm-needle {
+    --needle-angle: 0deg;
+    transform: rotate(var(--needle-angle));
+
+}
+
+#speed-needle {
+    --needle-angle: 0deg;
+    transform: rotate(var(--speed-angle));
+}

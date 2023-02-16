@@ -1,11 +1,35 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/gauge-cluster.css' %}">
+{% endblock %}
+
 {% block body %}
 <div id="gauge-cluster" class="container">
     <div class="row">
-        <div id="rpm" class="col"></div>
+        <div class="col">
+            <div class="gauge-wrapper">
+                <img src="{% static 'assets/rpm-gauge.png' %}">
+                <div class="gauge-needle-container">
+                    <div id="rpm-needle" class="gauge-needle-wrapper">
+                        <div class="gauge-needle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="fuel-consumption" class="col"></div>
-        <div id="speed" class="col"></div>
+        <div class="col">
+            <div class="gauge-wrapper">
+                <img src="{% static 'assets/speed-gauge.png' %}">
+                <div class="gauge-needle-container">
+                    <div id="speed-needle" class="gauge-needle-wrapper">
+                        <div class="gauge-needle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div id="battery-voltage" class="col"></div>
@@ -13,7 +37,6 @@
     </div>
 </div>
 
-{% load static %}
 <script src="{% static 'django_eventstream/eventsource.min.js' %}"></script>
 <script src="{% static 'django_eventstream/reconnecting-eventsource.js' %}"></script>
 {% endblock %}
