@@ -56,21 +56,6 @@ img {
     left: -18px;
 }
 
-#rpm-needle {
-    --needle-angle: 0deg;
-    transform: rotate(var(--needle-angle));
-}
-
-#speed-needle {
-    --needle-angle: 0deg;
-    transform: rotate(var(--needle-angle));
-}
-
-#voltage-needle {
-    --needle-angle: 0deg;
-    transform: rotate(var(--needle-angle));
-}
-
 .gauge-meters-container {
     width: 170px;
     height: 100px;
@@ -100,12 +85,27 @@ img {
     transition: ease-out 0.8s;
 }
 
-#o2s-meter {
-    --meter-width: 0px;
-    width: max(0px, var(--meter-width));
+#rpm-gauge {
+    --gauge-measure: 0deg;
+    transform: rotate(var(--gauge-measure));
 }
 
-#econ-meter {
-    --meter-width: 0px;
-    width: max(0px, var(--meter-width));
+#speed-gauge {
+    --gauge-measure: 0deg;
+    transform: rotate(var(--gauge-measure));
+}
+
+#voltage-gauge {
+    --gauge-measure: 0deg;
+    transform: rotate(var(--gauge-measure));
+}
+
+#o2s-gauge {
+    --gauge-measure: 0px;
+    width: max(0px, var(--gauge-measure));
+}
+
+#econ-gauge {
+    --gauge-measure: 0px;
+    width: max(0px, var(--gauge-measure));
 }

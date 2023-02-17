@@ -3,7 +3,7 @@
 <div class="gauge-wrapper{% if size %} gauge-wrapper-{{ size }} {% endif %}">
     <img src="{% static gauge_style %}">
     <div class="gauge-needle-container{% if size %} gauge-needle-container-{{ size }} {% endif %}">
-        <div id="{{ type }}-needle" class="gauge-needle-wrapper{% if size %} gauge-needle-wrapper-{{ size }} {% endif %}">
+        <div id="{{ type }}-gauge" class="gauge-needle-wrapper{% if size %} gauge-needle-wrapper-{{ size }} {% endif %}">
             <div class="gauge-needle{% if size %} gauge-needle-{{ size }} {% endif %}"></div>
         </div>
     </div>
