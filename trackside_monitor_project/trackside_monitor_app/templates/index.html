@@ -12,7 +12,11 @@
         <div class="col">
             {% include 'gauges/gauge.html' with gauge_style='assets/rpm-gauge.png' type='rpm' %}
         </div>
-        <div id="fuel-consumption" class="col"></div>
+        <div class="col">
+            {% with 'o2s econ' as types %}
+                {% include 'gauges/double_meter_gauge.html' with types=types.split %}
+            {% endwith %}
+        </div>
         <div class="col">
             {% include 'gauges/gauge.html' with gauge_style='assets/speed-gauge.png' type='speed' %}
         </div>

@@ -70,3 +70,42 @@ img {
     --needle-angle: 0deg;
     transform: rotate(var(--needle-angle));
 }
+
+.gauge-meters-container {
+    width: 170px;
+    height: 100px;
+    position: absolute;
+    top: 95px;
+    left: 115px;
+}
+
+.gauge-meter-container {
+    height: 40px;
+    position: relative;
+    background-color: black;
+}
+
+.lower-meter {
+    top: 20px;
+}
+
+.meter {
+    max-width: 164px;
+    min-width: 0px;
+    height: 34px;
+    position: relative;
+    top: 3px;
+    left: 3px;
+    background-color: red;
+    transition: ease-out 0.8s;
+}
+
+#o2s-meter {
+    --meter-width: 0px;
+    width: max(0px, var(--meter-width));
+}
+
+#econ-meter {
+    --meter-width: 0px;
+    width: max(0px, var(--meter-width));
+}
