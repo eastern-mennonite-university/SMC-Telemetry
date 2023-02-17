@@ -1,6 +1,6 @@
-const GAUGE_MAXIMUMS = {
-    'rpm': 5000,
-    'speed': 50,
+const GAUGE_BOUNDS = {
+    'rpm': [0, 5000],
+    'speed': [0, 50],
 };
 
 const MAX_ANGLES = {
@@ -11,7 +11,8 @@ const MAX_ANGLES = {
 function setGaugeClusterData(data) {
     Object.entries(JSON.parse(data)).forEach(entry => {
         const [key, value] = entry;
-        let angle = MAX_ANGLES[key] / GAUGE_MAXIMUMS[key] * value;
+        let mapping_slope = MAX_ANGLES[key] / (GAUGE_BOUNDS[key][1] - GAUGE_BOUNDS[key][0]);
+        let angle = mapping_slope * value - GAUGE_BOUNDS[key][0] * mapping_slope;
         document.getElementById(`${key}-needle`).style.setProperty('--needle-angle', `${angle}deg`);
     });
 }
