@@ -1,0 +1,10 @@
+{% load static %}
+
+<div class="gauge-wrapper">
+    <img src="{% static gauge_style %}">
+    <div class="gauge-needle-container">
+        <div id="{{ type }}-needle" class="gauge-needle-wrapper">
+            <div class="gauge-needle"></div>
+        </div>
+    </div>
+</div>
