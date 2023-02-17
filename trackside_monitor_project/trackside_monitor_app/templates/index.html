@@ -10,16 +10,16 @@
 <div id="gauge-cluster" class="container">
     <div class="row">
         <div class="col">
-            {% include 'gauge.html' with gauge_style='assets/rpm-gauge.png' type='rpm' %}
+            {% include 'gauges/gauge.html' with gauge_style='assets/rpm-gauge.png' type='rpm' %}
         </div>
         <div id="fuel-consumption" class="col"></div>
         <div class="col">
-            {% include 'gauge.html' with gauge_style='assets/speed-gauge.png' type='speed' %}
+            {% include 'gauges/gauge.html' with gauge_style='assets/speed-gauge.png' type='speed' %}
         </div>
     </div>
     <div class="row">
         <div id="battery-voltage" class="col">
-            {% include 'gauge.html' with gauge_style='assets/battery-voltage-gauge.png' type='voltage' size='sm'%}
+            {% include 'gauges/gauge.html' with gauge_style='assets/battery-voltage-gauge.png' type='voltage' size='sm'%}
         </div>
         <div id="intake-air-temp" class="col"></div>
     </div>
