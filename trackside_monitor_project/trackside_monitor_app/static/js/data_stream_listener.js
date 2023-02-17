@@ -1,11 +1,13 @@
 const GAUGE_BOUNDS = {
     'rpm': [0, 5000],
     'speed': [0, 50],
+    'voltage': [10, 18],
 };
 
 const MAX_ANGLES = {
     'rpm': 225,
     'speed': 225,
+    'voltage': 180,
 };
 
 function setGaugeClusterData(data) {

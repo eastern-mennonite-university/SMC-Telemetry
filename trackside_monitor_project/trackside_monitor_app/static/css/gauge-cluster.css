@@ -36,10 +36,14 @@ img {
 #rpm-needle {
     --needle-angle: 0deg;
     transform: rotate(var(--needle-angle));
-
 }
 
 #speed-needle {
+    --needle-angle: 0deg;
+    transform: rotate(var(--needle-angle));
+}
+
+#voltage-needle {
     --needle-angle: 0deg;
     transform: rotate(var(--needle-angle));
 }
