@@ -33,6 +33,29 @@ img {
     background-color: red;
 }
 
+.gauge-wrapper-sm {
+    width: 200px;
+    height: 150px;
+}
+
+.gauge-needle-container-sm {
+    width: 100px;
+    height: 75px;
+    top: 37.5px;
+    left: 50px;
+}
+
+.gauge-needle-wrapper-sm {
+    width: 100px;
+    height: 75px;
+}
+
+.gauge-needle-sm {
+    width: 67.5px;
+    top: 36px;
+    left: -18px;
+}
+
 #rpm-needle {
     --needle-angle: 0deg;
     transform: rotate(var(--needle-angle));
