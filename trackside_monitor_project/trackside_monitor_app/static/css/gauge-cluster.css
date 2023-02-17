@@ -41,5 +41,5 @@ img {
 
 #speed-needle {
     --needle-angle: 0deg;
-    transform: rotate(var(--speed-angle));
+    transform: rotate(var(--needle-angle));
 }
