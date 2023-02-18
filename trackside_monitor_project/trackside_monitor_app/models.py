@@ -1,3 +1,6 @@
 from django.db import models
 
-# Create your models here.
+
+class LoraThread(models.Model):
+    thread_name = models.CharField(max_length=10)
+    thread_flag = models.BooleanField()
