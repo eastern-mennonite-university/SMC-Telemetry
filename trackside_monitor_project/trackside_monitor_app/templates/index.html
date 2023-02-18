@@ -23,9 +23,11 @@
     </div>
     <div class="row">
         <div id="battery-voltage" class="col">
-            {% include 'gauges/gauge.html' with gauge_style='assets/battery-voltage-gauge.png' type='voltage' size='sm'%}
+            {% include 'gauges/gauge.html' with gauge_style='assets/battery-voltage-gauge.png' type='voltage' size='sm' %}
         </div>
-        <div id="intake-air-temp" class="col"></div>
+        <div class="col">
+            {% include 'gauges/gauge.html' with gauge_style='assets/intake-temp-gauge.png' type='temp-air' size='sm' %}
+        </div>
     </div>
 </div>
 

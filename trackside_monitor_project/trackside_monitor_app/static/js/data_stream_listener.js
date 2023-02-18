@@ -4,6 +4,7 @@ const GAUGE_BOUNDS = {
     'voltage': [10, 18],
     'o2s': [0, 1], // Set to [0, 1] until realistic bound is known
     'econ': [0, 1], // Set to [0, 1] until realistic bound is known
+    'temp-air': [0, 150],
 };
 
 const MAX_MEASURES = {
@@ -12,6 +13,7 @@ const MAX_MEASURES = {
     'voltage': 180,
     'o2s': 164,
     'econ': 164,
+    'temp-air': 180,
 };
 
 const GAUGE_UNITS = {
@@ -20,6 +22,7 @@ const GAUGE_UNITS = {
     'voltage': 'deg',
     'o2s': 'px',
     'econ': 'px',
+    'temp-air': 'deg',
 }
 
 function setGaugeClusterData(data) {

@@ -11,5 +11,6 @@ def emulate_lora():
             'voltage': random.random() + 13.5,
             'o2s': random.random() * 0.25 + 0.375,
             'econ': random.random() * 0.25 + 0.375,
+            'temp-air': random.randint(95,100),
         })
         time.sleep(1)
