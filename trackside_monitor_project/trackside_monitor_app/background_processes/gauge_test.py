@@ -5,6 +5,7 @@ from trackside_monitor_app.models import LoraThread
 
 from django_eventstream import send_event
 
+
 def flag_check():
     lora_thread = LoraThread.objects.get(thread_name='lora')
     return lora_thread.thread_flag
