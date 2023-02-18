@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/gauge-cluster.css' %}">
+{% endblock %}
+
+{% block body %}
+<div id="gauge-cluster" class="container">
+    <div class="row my-4">
+        <div class="col-auto">
+            <button id="start-btn" class="btn btn-primary">Start LoRa</button>
+        </div>
+        <div class="col-auto">
+            <button id="stop-btn" class="btn btn-danger">Stop LoRa</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {% include 'gauges/gauge.html' with gauge_style='assets/rpm-gauge.png' type='rpm' %}
+        </div>
+        <div class="col">
+            {% with 'o2s econ' as types %}
+                {% include 'gauges/double_meter_gauge.html' with types=types.split %}
+            {% endwith %}
+        </div>
+        <div class="col">
+            {% include 'gauges/gauge.html' with gauge_style='assets/speed-gauge.png' type='speed' %}
+        </div>
+    </div>
+    <div class="row">
+        <div id="battery-voltage" class="col">
+            {% include 'gauges/gauge.html' with gauge_style='assets/battery-voltage-gauge.png' type='voltage' size='sm' %}
+        </div>
+        <div class="col">
+            {% include 'gauges/gauge.html' with gauge_style='assets/intake-temp-gauge.png' type='temp-air' size='sm' %}
+        </div>
+        <div class="col">
+            {% include 'gauges/gauge.html' with gauge_style='assets/engine-temp-gauge.png' type='temp-engine' size='sm' %}
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'django_eventstream/eventsource.min.js' %}"></script>
+<script src="{% static 'django_eventstream/reconnecting-eventsource.js' %}"></script>
+
+<script src="{% static 'js/data_stream_listener.js' %}"></script>
+{% endblock %}

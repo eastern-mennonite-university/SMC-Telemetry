@@ -1,0 +1,13 @@
+{% load static %}
+
+<div class="gauge-wrapper">
+    <img src="{% static 'assets/fuel-gauge.png' %}">
+    <div class="gauge-meters-container">
+        <div class="gauge-meter-container upper-meter">
+            <div id="{{ types.0 }}-gauge" class="meter"></div>
+        </div>
+        <div class="gauge-meter-container lower-meter">
+            <div id="{{ types.1 }}-gauge" class="meter"></div>
+        </div>
+    </div>
+</div>
