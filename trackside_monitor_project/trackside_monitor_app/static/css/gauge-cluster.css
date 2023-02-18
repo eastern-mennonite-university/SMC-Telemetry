@@ -85,26 +85,14 @@ img {
     transition: ease-out 0.8s;
 }
 
-#rpm-gauge {
-    --gauge-measure: 0deg;
-    transform: rotate(var(--gauge-measure));
-}
-
-#speed-gauge {
-    --gauge-measure: 0deg;
-    transform: rotate(var(--gauge-measure));
-}
-
+#rpm-gauge,
+#speed-gauge,
 #voltage-gauge {
     --gauge-measure: 0deg;
     transform: rotate(var(--gauge-measure));
 }
 
-#o2s-gauge {
-    --gauge-measure: 0px;
-    width: max(0px, var(--gauge-measure));
-}
-
+#o2s-gauge,
 #econ-gauge {
     --gauge-measure: 0px;
     width: max(0px, var(--gauge-measure));
