@@ -88,7 +88,8 @@ img {
 #rpm-gauge,
 #speed-gauge,
 #voltage-gauge,
-#temp-air-gauge {
+#temp-air-gauge,
+#temp-engine-gauge {
     --gauge-measure: 0deg;
     transform: rotate(var(--gauge-measure));
 }
