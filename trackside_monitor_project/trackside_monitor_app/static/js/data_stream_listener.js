@@ -38,8 +38,20 @@ function setGaugeClusterData(data) {
     });
 }
 
+function executeOnMessage(event) {
+    setGaugeClusterData(event.data);
+}
+
 event_stream = new ReconnectingEventSource('event-stream/');
 
-event_stream.addEventListener('message', function (event) {
-    setGaugeClusterData(event.data);
-}, false);
+start_button = document.getElementById('start-btn');
+stop_button = document.getElementById('stop-btn');
+
+start_button.addEventListener('click', () => {
+    event_stream.addEventListener('message', executeOnMessage, false);
+
+});
+
+stop_button.addEventListener('click', () => {
+    event_stream.removeEventListener('message', executeOnMessage, false);
+});

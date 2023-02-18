@@ -8,6 +8,15 @@
 
 {% block body %}
 <div id="gauge-cluster" class="container">
+    <div class="row my-4">
+        <div class="col-auto">
+            <button id="start-btn" class="btn btn-primary">Start LoRa</button>
+        </div>
+        <div class="col-auto">
+            <button id="stop-btn" class="btn btn-danger">Stop LoRa</button>
+        </div>
+        <div id="status-data" class="col-auto"></div>
+    </div>
     <div class="row">
         <div class="col">
             {% include 'gauges/gauge.html' with gauge_style='assets/rpm-gauge.png' type='rpm' %}
