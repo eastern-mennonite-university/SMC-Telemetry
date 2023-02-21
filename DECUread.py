@@ -154,5 +154,5 @@ def ECUdata():
                 IntConverted = int.from_bytes(rawdata[x:x+1], byteorder="big")
                 print("Rawbyte " + str(x) + " = " + str(rawdata[x:x+1]) + "Int = " + str(IntConverted))
         return True
-    except:
+    except hid.HIDException:
         return False
