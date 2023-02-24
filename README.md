@@ -1,7 +1,7 @@
 # SMC-Telemetry
 Software for getting data from the Super Mileage Car
 ## GPS Hardware
-Onboard Pi utitilizes Adafruit Ultimate GPS Logger Shield. See https://learn.adafruit.com/adafruit-ultimate-gps-logger-shield for details
+Onboard Pi utitilizes Adafruit Ultimate GPS Logger Shield. See https://learn.adafruit.com/adafruit-ultimate-gps-logger-shield for details. For arduino libaries and data parsing see adafruit library https://github.com/adafruit/Adafruit_GPS
 ## Trackside Monitor
 The Trackside Monitor allows the team to visualize live data that is sent from the car to the crew. This will aid in the process of tuning, choosing driving strategies, and understanding what is happening with the car during driving sessions.
 ### Build
