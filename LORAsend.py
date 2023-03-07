@@ -24,12 +24,19 @@ packet = None
 dataNewECU = 0
 dataNewGPS = 0
 rfm9x.send(b'NO FIX')
+
+payload_data = dict()
+
+ecu_flag = False
+
 while True:
-    if ECUdata():
+    ecu_data = ECUdata()
+    if ecu_data:
         packet = None
-        from DECUread import rpm, fuelCon, ect, iat, o2s, ubAdc
-        rfm9x.send(rpm.encode() + fuelCon.encode() + ect.encode() + iat.encode() + o2s.encode() + ubAdc.encode())
-        time.sleep(0.2)
+        payload_data.update(ecu_data)
+        print('ECU data updated', end=' ')
+        print(payload_data)
+        ecu_flag = True
         dataNewECU = True
     elif dataNewECU == True:
         dataNewECU = False
@@ -44,6 +51,10 @@ while True:
 
 
     time.sleep(0.2)
+    if ecu_flag:
+        payload = payload_data['rpm'] + ',' + payload_data['fuelCon'] + ',' + payload_data['ect'] + ',' + payload_data['iat'] + ',' + payload_data['o2s'] + ',' + payload_data['ubAdc']
+        print(payload)
+        rfm9x.send(payload.encode())
 
     #Logging code
     if dataNewECU == True:
