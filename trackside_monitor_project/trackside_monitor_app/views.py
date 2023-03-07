@@ -55,7 +55,7 @@ def stop_lora(request):
     for thread in threading.enumerate():
         if thread.getName() == 'lora':
             while (True):
-                if not thread.isAlive():
+                if not thread.is_alive():
                     thread.join()
                     break
 
