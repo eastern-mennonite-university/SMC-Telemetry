@@ -27,15 +27,19 @@ def receive_transmissions():
     while True:
         packet = rfm9x.receive()
         if packet:
-            packet_data = str(packet, 'utf-8').split(',')
-            send_event('driving-data', 'message', {
-                'rpm': int(packet_data[0]),
-                'speed': 0,
-                'voltage': int(packet_data[5]),
-                'o2s': int(packet_data[4]),
-                'econ': int(packet_data[1]),
-                'temp-air': int(packet_data[3]),
-                'temp-engine': int(packet_data[2]),
-            })
+            try:
+                packet_data = str(packet, 'utf-8').split(',')
+                send_event('driving-data', 'message', {
+                    'rpm': int(packet_data[0]),
+                    'speed': 0,
+                    'voltage': int(packet_data[5]),
+                    'o2s': int(packet_data[4]),
+                    'econ': int(packet_data[1]),
+                    'temp-air': int(packet_data[3]),
+                    'temp-engine': int(packet_data[2]),
+                })
+            except UnicodeDecodeError:
+                print('UnicodeDecodeError')
+                pass
         if flag_check():
             break
