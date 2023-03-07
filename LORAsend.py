@@ -42,28 +42,6 @@ while True:
         print("Please connect the ECU")
         time.sleep(0.2)
 
-   
-    if FixCheck():
-        from DGPSread import go
-        if go == 0:
-            FixCheck()
-            print('NO FIX')
-            dataNewGPS = True
-        else:
-            VTGdata()
-            from DGPSread import courseT, courseM, speedKH
-            packet = None
-            rfm9x.send(courseT + courseM + speedKH)
-            sent = True
-    elif dataNewGPS == True:
-        dataNewGPS = False
-        rfm9x.send(b"EA: Arduino disconnected or off")
-        time.sleep(0.2)
-    elif dataNewGPS == 0:
-        dataNewGPS = False
-        #rfm9x.send(b"Please connect the Arduino")
-        print("Please connect the Arduino")
-        time.sleep(0.2)       
 
     time.sleep(0.2)
 
