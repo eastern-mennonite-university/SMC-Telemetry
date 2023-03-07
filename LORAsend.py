@@ -23,7 +23,6 @@ prev_packet = None
 packet = None
 dataNewECU = 0
 dataNewGPS = 0
-rfm9x.send(b'NO FIX')
 
 payload_data = dict()
 
@@ -40,12 +39,10 @@ while True:
         dataNewECU = True
     elif dataNewECU == True:
         dataNewECU = False
-        rfm9x.send(b"EU: ECU disconnected or off")
         print("ECU is disconnected")
         time.sleep(0.2)
     elif dataNewECU == 0:
         dataNewECU = False
-        #rfm9x.send(b"Please connect the ECU")
         print("Please connect the ECU")
         time.sleep(0.2)
 
