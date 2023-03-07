@@ -29,15 +29,25 @@ def receive_transmissions():
         if packet:
             try:
                 packet_data = str(packet, 'utf-8').split(',')
-                send_event('driving-data', 'message', {
-                    'rpm': int(packet_data[0]),
-                    'speed': 0,
-                    'voltage': int(packet_data[5]),
-                    'o2s': int(packet_data[4]),
-                    'econ': int(packet_data[1]),
-                    'temp-air': int(packet_data[3]),
-                    'temp-engine': int(packet_data[2]),
-                })
+                if packet_data[0] == '1':
+                    send_event('driving-data', 'message', {
+                        'rpm': int(packet_data[1]),
+                        'speed': int(packet_data[7]),
+                        'voltage': int(packet_data[6]),
+                        'o2s': int(packet_data[5]),
+                        'econ': int(packet_data[2]),
+                        'temp-air': int(packet_data[4]),
+                        'temp-engine': int(packet_data[3]),
+                    })
+                else:
+                    send_event('driving-data', 'message', {
+                        'rpm': int(packet_data[1]),
+                        'voltage': int(packet_data[6]),
+                        'o2s': int(packet_data[5]),
+                        'econ': int(packet_data[2]),
+                        'temp-air': int(packet_data[4]),
+                        'temp-engine': int(packet_data[3]),
+                    })
             except UnicodeDecodeError:
                 print('UnicodeDecodeError')
                 pass
