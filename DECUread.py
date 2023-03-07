@@ -135,6 +135,6 @@ def ECUdata():
             if (verbose and rawdata[x:x+1]!= b''):
                 IntConverted = int.from_bytes(rawdata[x:x+1], byteorder="big")
                 print("Rawbyte " + str(x) + " = " + str(rawdata[x:x+1]) + "Int = " + str(IntConverted))
-        return True
+        return variables
     except hid.HIDException:
         return None
