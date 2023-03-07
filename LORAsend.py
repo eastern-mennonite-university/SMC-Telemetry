@@ -40,14 +40,10 @@ while True:
     elif dataNewECU == True:
         dataNewECU = False
         print("ECU is disconnected")
-        time.sleep(0.2)
     elif dataNewECU == 0:
         dataNewECU = False
         print("Please connect the ECU")
-        time.sleep(0.2)
 
-
-    time.sleep(0.2)
     if ecu_flag:
         payload = payload_data['rpm'] + ',' + payload_data['fuelCon'] + ',' + payload_data['ect'] + ',' + payload_data['iat'] + ',' + payload_data['o2s'] + ',' + payload_data['ubAdc']
         print(payload)
