@@ -44,9 +44,15 @@ while True:
         dataNewECU = False
         print("Please connect the ECU")
 
+    gps_data = GPSdata()
+    if gps_data:
+        payload_data['speed'] = gps_data
+
     if ecu_flag:
-        payload = payload_data['rpm'] + ',' + payload_data['fuelCon'] + ',' + payload_data['ect'] + ',' + payload_data['iat'] + ',' + payload_data['o2s'] + ',' + payload_data['ubAdc']
-        print(payload)
+        if payload_data.get('speed'):
+            payload = '1,' + payload_data['rpm'] + ',' + payload_data['fuelCon'] + ',' + payload_data['ect'] + ',' + payload_data['iat'] + ',' + payload_data['o2s'] + ',' + payload_data['ubAdc'] + ',' + payload_data['speed']
+        else:
+            payload = '0,' + payload_data['rpm'] + ',' + payload_data['fuelCon'] + ',' + payload_data['ect'] + ',' + payload_data['iat'] + ',' + payload_data['o2s'] + ',' + payload_data['ubAdc']
         rfm9x.send(payload.encode())
 
     #Logging code
