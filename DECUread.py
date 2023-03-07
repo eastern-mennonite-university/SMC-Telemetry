@@ -5,6 +5,8 @@ import time
 # Set Verbosity (leave False unless you want to debug)
 verbose = False
 
+serECU = None
+
 def ECUdata():
     global variables
     global rpm
@@ -26,11 +28,13 @@ def ECUdata():
     global mFuel
     global tOnServoCtrl
     
+    global serECU
     try:
         # Reads the ECU device (given the Vendor and Product ID, as below)
-        serECU = hid.Device(22616,6)
+        if not serECU:
+            serECU = hid.Device(22616,6)
         variables = []
-        
+
         #time.sleep(0.5)
         rawdata = serECU.read(41)
         
