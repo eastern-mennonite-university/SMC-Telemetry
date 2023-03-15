@@ -10,5 +10,8 @@ def GPSdata():
     if serGPS.in_waiting > 0:
         speed = serGPS.read(serGPS.in_waiting)
         serGPS.reset_input_buffer()
-        return float(speed.decode())
+        try:
+            return float(speed.decode())
+        except ValueError:
+            pass
     return None
