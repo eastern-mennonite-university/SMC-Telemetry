@@ -6,8 +6,9 @@ def GPSdata():
     global serGPS
     if not serGPS:
         serGPS = serial.Serial('/dev/ttyACM0', 115200)
-    newbytes = serGPS.inWaiting()
-    speed = str(serGPS.read(newbytes), 'UTF-8')
-    if len(speed) > 0:
-        return speed
+        serGPS.reset_input_buffer()
+    if serGPS.in_waiting > 0:
+        speed = serGPS.read(serGPS.in_waiting)
+        serGPS.reset_input_buffer()
+        return float(speed.decode())
     return None
