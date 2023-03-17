@@ -26,4 +26,4 @@ pip install Django django_eventstream channels==3.0.5
 4. Create Django model migrations. Run ```python trackside_monitor_project/manage.py makemigrations```.
 5. Apply migrations. Run ```python trackside_monitor_project/manage.py migrate```.
 ### Running the Application
-After installing all of the dependencies and completing the build steps above, it should be possible to run the application. To start the server run ```trackside_monitor_project/manage.py runserver <ip_address>```. When the server is running the page can be accessed at ```http://<ip_address>:8000``` e.g. [http://localhost:8000](http://localhost:8000) on the device the server is running on.
+After installing all of the dependencies and completing the build steps above, it should be possible to run the application. To start the server run ```trackside_monitor_project/manage.py runserver <ip_address>:8000```. When the server is running the page can be accessed at ```http://<ip_address>:8000``` e.g. [http://localhost:8000](http://localhost:8000) on the device the server is running on.
