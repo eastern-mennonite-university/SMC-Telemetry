@@ -44,7 +44,7 @@ while True:
 
     gps_data = GPSdata()
     if gps_data:
-        payload_data['speed'] = gps_data
+        payload_data['speed'] = str(gps_data)
 
     if ecu_flag:
         if payload_data.get('speed'):
