@@ -6,7 +6,7 @@ def GPSdata():
     try:
         global serGPS
         if not serGPS:
-            serGPS = serial.Serial('/dev/ttyACM0', 115200)
+            serGPS = serial.Serial('/dev/ttyACM0', 9600)
             serGPS.reset_input_buffer()
         try:
             if serGPS.in_waiting > 0:
