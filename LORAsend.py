@@ -23,49 +23,35 @@ prev_packet = None
 packet = None
 dataNewECU = 0
 dataNewGPS = 0
-rfm9x.send(b'NO FIX')
+
+payload_data = dict()
+
+ecu_flag = False
+
 while True:
-    if ECUdata():
+    ecu_data = ECUdata()
+    if ecu_data:
         packet = None
-        from DECUread import rpm, fuelCon, ect, iat, o2s, ubAdc
-        rfm9x.send(rpm.encode() + fuelCon.encode() + ect.encode() + iat.encode() + o2s.encode() + ubAdc.encode())
-        time.sleep(0.2)
+        payload_data.update(ecu_data)
+        ecu_flag = True
         dataNewECU = True
     elif dataNewECU == True:
         dataNewECU = False
-        rfm9x.send(b"EU: ECU disconnected or off")
         print("ECU is disconnected")
-        time.sleep(0.2)
     elif dataNewECU == 0:
         dataNewECU = False
-        #rfm9x.send(b"Please connect the ECU")
         print("Please connect the ECU")
-        time.sleep(0.2)
 
-   
-    if FixCheck():
-        from DGPSread import go
-        if go == 0:
-            FixCheck()
-            print('NO FIX')
-            dataNewGPS = True
+    gps_data = GPSdata()
+    if gps_data:
+        payload_data['speed'] = str(gps_data)
+
+    if ecu_flag:
+        if payload_data.get('speed'):
+            payload = '1,' + payload_data['rpm'] + ',' + payload_data['fuelCon'] + ',' + payload_data['ect'] + ',' + payload_data['iat'] + ',' + payload_data['o2s'] + ',' + payload_data['ubAdc'] + ',' + payload_data['speed']
         else:
-            VTGdata()
-            from DGPSread import courseT, courseM, speedKH
-            packet = None
-            rfm9x.send(courseT + courseM + speedKH)
-            sent = True
-    elif dataNewGPS == True:
-        dataNewGPS = False
-        rfm9x.send(b"EA: Arduino disconnected or off")
-        time.sleep(0.2)
-    elif dataNewGPS == 0:
-        dataNewGPS = False
-        #rfm9x.send(b"Please connect the Arduino")
-        print("Please connect the Arduino")
-        time.sleep(0.2)       
-
-    time.sleep(0.2)
+            payload = '0,' + payload_data['rpm'] + ',' + payload_data['fuelCon'] + ',' + payload_data['ect'] + ',' + payload_data['iat'] + ',' + payload_data['o2s'] + ',' + payload_data['ubAdc']
+        rfm9x.send(payload.encode())
 
     #Logging code
     if dataNewECU == True:
