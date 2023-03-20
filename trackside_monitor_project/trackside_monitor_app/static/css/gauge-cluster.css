@@ -21,7 +21,7 @@ img {
     width: 200px;
     height: 150px;
     position: relative;
-    transition: all 0.8s;
+    transition: all 0.1s;
 }
 
 .gauge-needle {
@@ -82,7 +82,7 @@ img {
     top: 3px;
     left: 3px;
     background-color: red;
-    transition: ease-out 0.8s;
+    transition: ease-out 0.1s;
 }
 
 #rpm-gauge,

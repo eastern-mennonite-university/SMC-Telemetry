@@ -3,7 +3,7 @@ import threading
 from django.http import HttpResponse
 from django.template import loader
 
-from .background_processes.gauge_test import emulate_lora
+from .background_processes.receive_lora import receive_transmissions
 from trackside_monitor_app.models import LoraThread
 
 
@@ -39,7 +39,7 @@ def start_lora(request):
 
         # Start the LoRa reading process in a separate thread
         lora_thread_process = threading.Thread(
-            target=emulate_lora, name='lora', daemon=True)
+            target=receive_transmissions, name='lora', daemon=True)
         lora_thread_process.start()
 
     return HttpResponse(status=200)
@@ -55,7 +55,7 @@ def stop_lora(request):
     for thread in threading.enumerate():
         if thread.getName() == 'lora':
             while (True):
-                if not thread.isAlive():
+                if not thread.is_alive():
                     thread.join()
                     break
 
