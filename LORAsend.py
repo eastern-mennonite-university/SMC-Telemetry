@@ -33,8 +33,6 @@ while True:
     if ecu_data:
         packet = None
         payload_data.update(ecu_data)
-        print('ECU data updated', end=' ')
-        print(payload_data)
         ecu_flag = True
         dataNewECU = True
     elif dataNewECU == True:
