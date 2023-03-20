@@ -32,7 +32,7 @@ def receive_transmissions():
                 if packet_data[0] == '1':
                     send_event('driving-data', 'message', {
                         'rpm': int(packet_data[1]),
-                        'speed': int(packet_data[7]),
+                        'speed': float(packet_data[7]),
                         'voltage': int(packet_data[6]),
                         'o2s': int(packet_data[5]),
                         'econ': int(packet_data[2]),
