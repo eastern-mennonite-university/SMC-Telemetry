@@ -39,13 +39,13 @@ def ECUdata():
 
         # * Engine Temperature
         ect=int.from_bytes(rawdata[12:14], byteorder="big")
-        ect=round((ect*1.25)+40)
+        ect=round((ect*1.25)-40)
         ect=str(ect)
         variables['ect']=ect
 
         # * Intake Air Temperature
         iat=int.from_bytes(rawdata[14:16], byteorder="big")
-        iat=round((iat*1.35)+40)
+        iat=round((iat*1.25)-40)
         iat=str(iat)
         variables['iat']=iat
 
