@@ -1,22 +1,29 @@
-import time
+import asyncio
 import json
 import websockets
 
-import random
+from DECUread import *
+from DGPSread import *
+
+payload_data = dict()
+
+ecu_flag = False
 
 async def send_data():
-    uri = 'ws://localhost:8000/send_data/'
-    async with websockets.connect(uri) as websocket:
+    url = 'ws://localhost:8000/send_data/'
+    async with websockets.connect(url) as websocket:
         while True:
-            data = {
-                'rpm': random.randint(1500, 2500),
-                'speed': random.randint(20, 30),
-                'voltage': random.random() + 13.5,
-                'o2s': random.random() * 0.25 + 0.375,
-                'econ': random.random() * 0.25 + 0.375,
-                'temp-air': random.randint(95, 100),
-                'temp-engine': random.randint(205, 215),
-            }
+            ecu_data = ECUdata()
+            if ecu_data:
+                payload_data.update(ecu_data)
+                ecu_flag = True
 
-            await websocket.send(json.dumps(data))
-            time.sleep(0.01)
+            gps_data = GPSdata()
+            if gps_data:
+                payload_data['speed'] = str(gps_data)
+
+            if ecu_flag:
+                await websocket.send(json.dumps(payload_data))
+
+if __name__ == '__main__':
+    asyncio.run(send_data())
