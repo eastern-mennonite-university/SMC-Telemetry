@@ -48,15 +48,9 @@ start_button = document.getElementById('start-btn');
 stop_button = document.getElementById('stop-btn');
 
 start_button.addEventListener('click', () => {
-    xhttp = new XMLHttpRequest();
-    xhttp.open('GET', 'start-lora/', true);
-    xhttp.send();
     event_stream.addEventListener('message', executeOnMessage, false);
 });
 
 stop_button.addEventListener('click', () => {
-    xhttp = new XMLHttpRequest();
-    xhttp.open('GET', 'stop-lora/', true);
-    xhttp.send();
     event_stream.removeEventListener('message', executeOnMessage, false);
 });
