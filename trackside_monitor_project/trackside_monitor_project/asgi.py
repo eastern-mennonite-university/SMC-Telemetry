@@ -15,6 +15,8 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.auth import AuthMiddlewareStack
 import django_eventstream
 
+from trackside_monitor_app.consumers import DataConsumer
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'trackside_monitor_project.settings')
 
 application = ProtocolTypeRouter({
@@ -24,4 +26,9 @@ application = ProtocolTypeRouter({
         ), {'channels': ['driving-data']}),
         re_path(r'', get_asgi_application()),
     ]),
+    'websocket': AuthMiddlewareStack(
+        URLRouter([
+            path('send_data/', DataConsumer()),
+        ])
+    )
 })
