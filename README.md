@@ -1,12 +1,11 @@
 # SMC-Telemetry
 Software for getting data from the Super Mileage Car
-## LoRa Radios
-Each Raspberry Pi device is equipped with a LoRa radio device to allow the car to send data over long distances. This allows for communication necessary for the Trackside Monitor and other uses for the SMC-Telemetry project. Each Raspberry Pi needs to be configured and have permissions set so that the LoRa radios can be used with Python scripts. To enable read and write access to all users and groups, create a udev rule for Raspbian in both Raspberry Pis. In ```/etc/udev/rules.d/``` create a file named ```50-serial-ecu.rules```. In this file, paste the following:
-```
-KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0666"
-```
+## Cellular Communication
+In order for us to get data from the car to the rest of the team that's trackside, we teather our phones to the Pi using USB and send data to a DNS server at EMU. This works with either Android or iOS, but on Android it is able to explicitly be enabled or disabled. iOS automaticly enables or disables it, inherently making it more finicky than Android as we have no control.
 ## GPS Hardware
-Onboard Pi utitilizes Adafruit Ultimate GPS Logger Shield. See https://learn.adafruit.com/adafruit-ultimate-gps-logger-shield for details. For arduino libaries and data parsing see adafruit library https://github.com/adafruit/Adafruit_GPS
+Onboard Pi utitilizes an Arduino with the Adafruit Ultimate GPS Logger Shield attached to it. See https://learn.adafruit.com/adafruit-ultimate-gps-logger-shield for details. For arduino libaries and data parsing see adafruit library https://github.com/adafruit/Adafruit_GPS
+## CAN Hardware
+The Megasquirt ECU mainly uses USB/Serial to burn changes to the firmware, it is easier to configure the ECU's CAN Bus to broadcast the data we want. We use an Adafruit CAN Feather to capture the data. See https://learn.adafruit.com/adafruit-rp2040-can-bus-feather/overview for details. This link also provides details on how to set it up with the Arduino IDE. 
 ## Trackside Monitor
 The Trackside Monitor allows the team to visualize live data that is sent from the car to the crew. This will aid in the process of tuning, choosing driving strategies, and understanding what is happening with the car during driving sessions.
 ### Build
