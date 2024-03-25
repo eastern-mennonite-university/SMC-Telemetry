@@ -2,6 +2,18 @@ import serial
 import cantools
 from pprint import pprint
 
+'''
+# CAN messages we need:
+#   gp0 - Uptime and RPM
+#   gp2 - Baro, MAP
+#   gp3 - tps, batt
+#   gp4 - air density
+#   gp5 - tpsaccel barocor
+#   gp6 - totalcor
+#   gp7 - TPSdot MAPdot RPMdot
+#   gp11 - airtemp
+'''
+
 def ECUdata():
     global serECU
     global db
