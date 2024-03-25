@@ -5,6 +5,7 @@ from pprint import pprint
 def ECUdata():
     global serECU
     global db
+    variables = dict()
     db = cantools.database.load_file('Megasquirt_CAN.dbc')
     try:
         if not serECU:
@@ -16,5 +17,9 @@ def ECUdata():
                 print("None")
             else:
                 db.decode_message(message.arbitration_id, message.data)
+
+        
+        
+
     except serial.serialutil.SerialException:
         pass
