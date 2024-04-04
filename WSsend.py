@@ -9,7 +9,7 @@ from DGPSread import *
 payload_data = dict()
 
 async def send_data():
-    url = 'ws://localhost:8000/send_data/'
+    url = 'wss://84436788-f699-4fda-98e3-4f0bed88db2b-00-u8599ttrqb23.picard.repl.co/'
     async with websockets.connect(url) as websocket:
         while True:
             ecu_data = ECUdata()
