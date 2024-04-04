@@ -30,8 +30,6 @@ def ECUdata():
             else:
                 db.decode_message(message.arbitration_id, message.data)
 
-        
-        
 
     except serial.serialutil.SerialException:
         pass

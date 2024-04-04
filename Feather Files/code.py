@@ -3,6 +3,7 @@ import time
 import neopixel
 import microcontroller
 import adafruit_mcp2515
+from adafruit_mcp2515.canio import Message, RemoteTransmissionRequest
 from digitalio import DigitalInOut
 
 pixel = neopixel.NeoPixel(board.NEOPIXEL, 1)
@@ -14,9 +15,16 @@ spi = board.SPI()
 can_bus = adafruit_mcp2515.MCP2515(spi, cs, loopback=False, silent=False)
 
 while True:
-
-    message = adafruit_mcp2515.canio.Listener(can_bus, timeout=1.0)
-    print(message.receive())
+    with can_bus.listen(timeout=1.0) as listener:
+        message_count = listener.in_waiting()
+        print(message_count, "messages available")
+        for _i in range(message_count):
+            msg = listener.receive()
+            print("Message from ", hex(msg.id))
+            if isinstance(msg, Message):
+                print("message data:", msg.data)
+            if isinstance(msg, RemoteTransmissionRequest):
+                print("RTR length:", msg.length)
 
     temp = microcontroller.cpu.temperature
     if temp < 60:
