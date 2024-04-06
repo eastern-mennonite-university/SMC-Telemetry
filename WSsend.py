@@ -8,8 +8,10 @@ from DECUread import *
 from DGPSread import *
 
 #initialize TM1637 display
-tm_RPM = tm1637.TM1637(clk = 20, dio = 19) #choose display pins
-tm_speed = tm1637.TM1637(clk = 18, dio = 17) #choose display pins
+tm_speed = tm1637.TM1637(clk = 19, dio = 16) #choose display pins
+tm_rpm = tm1637.TM1637(clk = 26, dio = 20) #choose display pins
+tm_speed.brightness(val=2)
+tm_rpm.brightness(val=2)
 
 rpm = None
 speed = None
@@ -36,7 +38,7 @@ async def send_data():
 
 def Dashboard():
     speed = GPSdata()*1.151
-    tm_speed.number(speed)
+    tm_speed.number(int(speed)) #library doesn't work with decimals
 
 if __name__ == '__main__':
     asyncio.run(send_data())

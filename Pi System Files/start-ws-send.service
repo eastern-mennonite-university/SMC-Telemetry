@@ -1,0 +1,18 @@
+#Add this file to /etc/systemd/system to start telemetry when the Pi turns on
+[Unit]
+Description=start-ws-script Service
+After=network.target
+
+[Service]
+Type=idle
+User=pi
+ExecStart=/home/pi/SMC-Telemetry/venv/bin/python3 /home/pi/SMC-Telemetry/WSsend.py
+RemainAfterExit=yes
+Restart=on-failure
+RestartSec=5
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=ws_script
+
+[Install]
+WantedBy=multi-user.target
