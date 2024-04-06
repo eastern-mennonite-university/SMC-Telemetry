@@ -1,7 +1,8 @@
 # SMC-Telemetry
 Software for getting data from the Super Mileage Car
 ## Cellular Communication
-In order for us to get data from the car to the rest of the team that's trackside, we teather our phones to the Pi using USB and send data to a DNS server at EMU. This works with either Android or iOS, but on Android it is able to explicitly be enabled or disabled. iOS automaticly enables or disables it, inherently making it more finicky than Android as we have no control.
+In order for us to get data from the car to the rest of the team that's trackside, we are using a LTE hat to connect the Pi to cellular networks
+https://www.jeffgeerling.com/blog/2022/using-4g-lte-wireless-modems-on-raspberry-pi
 ## GPS Hardware
 Onboard Pi utitilizes an Arduino with the Adafruit Ultimate GPS Logger Shield attached to it. See https://learn.adafruit.com/adafruit-ultimate-gps-logger-shield for details. For arduino libaries and data parsing see adafruit library https://github.com/adafruit/Adafruit_GPS
 ## CAN Hardware
