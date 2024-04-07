@@ -18,10 +18,12 @@ from pprint import pprint
 def ECUdata():
     global serECU
     global db
+    global data
+    data = 0
     variables = dict()
     db = cantools.database.load_file('Megasquirt_CAN.dbc')
     try:
-        can_bus = can.interfaces.serial.serial_can.SerialBus("/dev/ttyAMC1")
+        can_bus = can.interfaces.serial.serial_can.SerialBus("/dev/ttyAMC0")
         message = can_bus.recv()
         data = db.decode_message(message.arbitration_id, message.data)
         print(data)

@@ -1,35 +1,69 @@
+# Based off of SixFab's GPS example code (https://docs.sixfab.com/page/read-gnss-gps-data-with-sixfab-hat)
+# Sixfab - Reading GPS data with Python
+# 2020
+
+from time import sleep
 import serial
 
-serGPS = None
+portwrite = "/dev/ttyUSB2"
+port = "/dev/ttyUSB1"
 
-def GPSdata():
+def parseGPS(data):
     global knots
-
-    go = False
     knots = 0
+    #print(data, end='') #prints raw data
+    if data[0:6] == "$GPRMC":
+        sdata = data.split(",")
+        if sdata[2] == 'V':
+            print("\nNo satellite data available.\n")
+            return
+        #print("-----Parsing GPRMC-----")
+        #time = sdata[1][0:2] + ":" + sdata[1][2:4] + ":" + sdata[1][4:6]
+        #lat = decode(sdata[3]) #latitude
+        #dirLat = sdata[4]      #latitude direction N/S
+        #lon = decode(sdata[5]) #longitute
+        #dirLon = sdata[6]      #longitude direction E/W
+        knots = sdata[7]       #Speed in knots
+        #trCourse = sdata[8]    #True course
+        #date = sdata[9][0:2] + "/" + sdata[9][2:4] + "/" + sdata[9][4:6] #date
+        #variation = sdata[10]  #variation
+        #degreeChecksum = sdata[13] #Checksum
+        #dc = degreeChecksum.split("*")
+        #degree = dc[0]        #degree
+        #checksum = dc[1]      #checksum
 
-    try:
-        serGPS = serial.Serial('/dev/ttyACM0', 9600)
-        serGPS.write("$PMTK_SET_NMEA_OUTPUT_RMCGGA\r\n")
-        while True:
-            try:
-                rawdata = serGPS.readline()
-                splitdata=rawdata.split(b',')
-                
-                nema = splitdata[0]
+        #latitude = lat.split() # parsing latitude
+        #longitute = lon.split() # parsing longitute
 
-                if nema.find(b'GGA') > 0:
-                    if splitdata[6] == b'0':
-                        print("-1")
-                    elif splitdata[6] == b'1':
-                        go = True
-                    elif splitdata[6] == b'2':
-                        go = True
-                if go:
-                    if nema.find(b'RMC') > 0:
-                        knots = splitdata[7]
-                        return float(knots.decode())
-            except ValueError as ve:
-                print(ve)
-    except serial.serialutil.SerialException as se:
-        print(se)
+        #print("\nLatitude: " + str(int(latitude[0]) + (float(latitude[2])/60)) + dirLat) 
+
+        #print("Longitute: " + str(int(longitute[0]) + (float(longitute[2])/60)) + dirLon)
+
+        print("knots : %s"%   (knots))
+
+
+def decode(coord):
+    #Converts DDDMM.MMMMM -> DD deg MM.MMMMM min
+    x = coord.split(".")
+    head = x[0]
+    tail = x[1]
+    deg = head[0:-2]
+    min = head[-2:]
+    return deg + " deg " + min + "." + tail + " min"
+
+print("Connecting Port..")
+try:
+    serw = serial.Serial(portwrite, baudrate = 115200, timeout = 1,rtscts=True, dsrdtr=True)
+    serw.write('AT+QGPS=1\r'.encode())
+    serw.close()
+    sleep(1)
+except Exception as e: 
+    print("Serial port connection failed.")
+    print(e)
+
+print("Receiving GPS data\n")
+ser = serial.Serial(port, baudrate = 115200, timeout = 0.5,rtscts=True, dsrdtr=True)
+while True:
+   data = ser.readline().decode('utf-8')
+   parseGPS(data)
+   sleep(2)
