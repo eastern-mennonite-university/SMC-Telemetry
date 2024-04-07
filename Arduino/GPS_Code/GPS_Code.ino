@@ -1,6 +1,6 @@
-#include <Adafruit_GPS.h>
+//Blank so direct serial to Pi
 void setup() {
-  GPS.sendCommand(PMTK_SET_NEMA_OUTPUT_RMCGGA);
+
 }
 
 void loop() {
