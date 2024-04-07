@@ -1,0 +1,2 @@
+#Add this line to the Pi's rc.local file
+sudo python3 /home/pi/Scripts/shutdown_pi.py &
