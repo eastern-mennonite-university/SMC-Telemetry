@@ -23,6 +23,8 @@ def ECUdata():
     try:
         can_bus = can.interfaces.serial.serial_can.SerialBus("/dev/ttyAMC1")
         message = can_bus.recv()
-        db.decode_message(message.arbitration_id, message.data)
+        data = db.decode_message(message.arbitration_id, message.data)
+        print(data)
+        return data
     except:
         pass

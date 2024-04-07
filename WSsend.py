@@ -37,7 +37,8 @@ async def send_data():
         print(e)
 
 def Dashboard():
-    speed = GPSdata()*1.151
+    speed = knots*1.151
+    print(speed)
     tm_speed.number(int(speed)) #library doesn't work with decimals
 
 if __name__ == '__main__':
