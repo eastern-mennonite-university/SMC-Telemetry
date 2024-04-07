@@ -28,7 +28,7 @@ async def send_data():
                 if ecu_data:
                     payload_data.update(ecu_data)
 
-                gps_data = GPSdata()
+                gps_data = parseGPS()
                 if gps_data:
                     payload_data['speed'] = str(gps_data)
 
@@ -38,8 +38,9 @@ async def send_data():
         print(e)
 '''
 def Dashboard():
-    speed = 0
-    DGPSread.GPSdata()
+    global speed
+
+    DGPSread.parseGPS()
     speed = float(DGPSread.knots)*1.151
     print(speed)
     tm_speed.number(int(speed)) #library doesn't work with decimals
@@ -52,5 +53,5 @@ if __name__ == '__main__':
         Dashboard()
         ECU()
         with open("data.txt", 'w') as output:
-            output.write(speed)
-            output.write(DECUread.data)
+            output.write(str(speed))
+            output.write(str(DECUread.data))

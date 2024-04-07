@@ -1,7 +1,7 @@
 import serial
 import cantools
 import can
-from pprint import pprint
+from can.interfaces.serial import SerialBus
 
 '''
 # CAN messages we need:
@@ -23,10 +23,10 @@ def ECUdata():
     variables = dict()
     db = cantools.database.load_file('Megasquirt_CAN.dbc')
     try:
-        can_bus = can.interfaces.serial.serial_can.SerialBus("/dev/ttyAMC0")
+        can_bus = SerialBus("/dev/ttyACM0")
         message = can_bus.recv()
         data = db.decode_message(message.arbitration_id, message.data)
         print(data)
         return data
-    except:
-        pass
+    except Exception as e:
+        print(e)

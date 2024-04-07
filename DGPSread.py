@@ -8,9 +8,16 @@ import serial
 portwrite = "/dev/ttyUSB2"
 port = "/dev/ttyUSB1"
 
-def parseGPS(data):
+def parseGPS():
     global knots
     knots = 0
+
+    try:
+        ser = serial.Serial(port, baudrate = 115200, timeout = 0.5,rtscts=True, dsrdtr=True)
+        data = ser.readline().decode('utf-8')
+    except Exception as e:
+        print(e)
+
     #print(data, end='') #prints raw data
     if data[0:6] == "$GPRMC":
         sdata = data.split(",")
@@ -60,10 +67,3 @@ try:
 except Exception as e: 
     print("Serial port connection failed.")
     print(e)
-
-print("Receiving GPS data\n")
-ser = serial.Serial(port, baudrate = 115200, timeout = 0.5,rtscts=True, dsrdtr=True)
-while True:
-   data = ser.readline().decode('utf-8')
-   parseGPS(data)
-   sleep(2)
